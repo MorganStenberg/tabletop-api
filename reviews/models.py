@@ -14,6 +14,8 @@ class Review(models.Model):
         upload_to='images/', blank=True, null=True
     )
     rating = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
 
 
     class Meta: 

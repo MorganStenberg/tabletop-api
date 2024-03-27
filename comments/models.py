@@ -1,10 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 from reviews.models import Review
 
 
 class Comment(models.Model):
     """
-    Comment model, related to User and Post
+    Comment model, related to User and review
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
