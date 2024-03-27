@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from games.models import Game
 
 class Review(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
