@@ -46,7 +46,7 @@ JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4e#ay=03d!x4o-%#5b6nolo@9!dhkg!%xu((r0f+#%_dj26v%l'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
