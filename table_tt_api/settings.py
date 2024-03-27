@@ -51,7 +51,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8000-morganstenb-tabletopapi-u5qgibj532p.ws-eu110.gitpod.io']
 
 
 # Application definition
