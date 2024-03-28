@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 #Todo: add field for aggregating ratings from reviews
 class Review(models.Model):
@@ -10,7 +11,10 @@ class Review(models.Model):
     image = models.ImageField(
         upload_to='images/', blank=True, null=True
     )
-    rating = models.IntegerField()
+    rating = models.IntegerField(
+        default=1,
+        validators=[MaxValueValidator(10), MinValueValidator(1)]
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
 
