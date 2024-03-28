@@ -32,5 +32,5 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = [
             'id', 'owner', 'is_owner', 'created_at', 'content', 'image',
-            'rating', 'game',
+            'rating', 'game', 'profile_image', 'profile_id', 'title',
         ]

@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from django.db.models import Count
 from rest_framework.response import Response
 from rest_framework import generics
 from .models import Profile
@@ -22,7 +23,7 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ProfileSerializer
     queryset = Profile.objects.annotate(
-        #review_count=Count('owner__review', distinct=True),
+        review_count=Count('owner__review', distinct=True),
         
     ).order_by('-created_at')
     
