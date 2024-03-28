@@ -3,13 +3,16 @@ from .models import Review
 
 #Credit to Code Institute Walkthrough
 class ReviewSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    author = serializers.ReadOnlyField(source='author.username')
     is_owner = serializers.SerializerMethodField()
-    profile_id = serializers.ReadOnlyField(source='owner.profile.id')
-    profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
+    profile_id = serializers.ReadOnlyField(source='author.profile.id')
+    profile_image = serializers.ReadOnlyField(source='author.profile.image.url')
 
 
     def validate_image(self, value):
+        if value is None:
+            return value
+
         if value.size > 1024 * 1024 * 2: 
             raise serializers.ValidationError(
                 'Image size larger than 2MB!'
@@ -26,11 +29,11 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     def get_is_owner(self, obj):
         request = self.context['request']
-        return request.user == obj.owner
+        return request.user == obj.author
 
     class Meta:
         model = Review
         fields = [
-            'id', 'owner', 'is_owner', 'created_at', 'content', 'image',
+            'id', 'author', 'is_owner', 'created_at', 'content', 'image',
             'rating', 'game', 'profile_image', 'profile_id', 'title',
         ]
