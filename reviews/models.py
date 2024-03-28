@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 #Todo: add field for aggregating ratings from reviews
 class Review(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
     game = models.CharField(max_length=250)
     content = models.TextField()
