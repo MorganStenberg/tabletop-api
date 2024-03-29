@@ -26,4 +26,5 @@ urlpatterns = [
     path('', include('profiles.urls')),
     path('', include('reviews.urls')),
     path('', include('saved.urls')),
+    path('', include('likes.urls')),
 ]
