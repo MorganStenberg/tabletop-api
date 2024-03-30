@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Review
 from likes.models import Like
+from saved.models import Save
 
 #Credit to Code Institute Walkthrough
 class ReviewSerializer(serializers.ModelSerializer):
@@ -11,6 +12,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     comments_count = serializers.ReadOnlyField()
     likes_count = serializers.ReadOnlyField()
     like_id = serializers.SerializerMethodField()
+    save_id = serializers.SerializerMethodField()
 
 
     def validate_image(self, value):
@@ -44,10 +46,19 @@ class ReviewSerializer(serializers.ModelSerializer):
             return likes.id if likes else None
         return None
 
+    def get_save_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            save = Save.objects.filter(
+                owner=user, review=obj
+            ).first()
+            return save.id if save else None
+        return None
+
     class Meta:
         model = Review
         fields = [
             'id', 'owner', 'is_owner', 'created_at', 'content', 'image',
             'rating', 'game', 'profile_image', 'profile_id', 'title',
-            'comments_count', 'likes_count', 'like_id',
+            'comments_count', 'likes_count', 'like_id', 'save_id',
         ]

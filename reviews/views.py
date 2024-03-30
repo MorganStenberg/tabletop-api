@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from django.db.models import Count
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Review
 from .serializers import ReviewSerializer
 from table_tt_api.permissions import IsOwnerOrReadOnly
@@ -17,6 +18,27 @@ class ReviewList(generics.ListCreateAPIView):
         likes_count=Count('likes', distinct=True),
     ).order_by('-created_at')
 
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+
+    filterset_fields = [
+        'saved_reviews__owner__profile',
+        'owner__profile',
+    ]
+
+    search_fields = [
+        'owner__username',
+        'title',
+        'game',
+    ]
+    
+    ordering_fields = [
+        'comments_count',
+        'likes_count',
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
