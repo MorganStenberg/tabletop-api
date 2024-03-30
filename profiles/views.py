@@ -6,14 +6,18 @@ from .models import Profile
 from .serializers import ProfileSerializer
 from table_tt_api.permissions import IsOwnerOrReadOnly
 
-class ProfileList(APIView):
+class ProfileList(generics.ListAPIView):
     """
     Profile list view - credit to Code Institute Walkthrough, link in readme
     """
-    def get(self, request):
-        profiles = Profile.objects.all()
-        serializer = ProfileSerializer(profiles, many=True, context={'request': request})
-        return Response(serializer.data)
+
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.annotate(
+        review_count=Count('owner__review', distinct=True),
+        saved_count=Count('owner__save', distinct=True)
+        
+    ).order_by('-created_at')
+    
 
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):

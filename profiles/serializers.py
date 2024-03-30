@@ -6,6 +6,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     review_count = serializers.ReadOnlyField()
+    saved_count = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -16,4 +17,5 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'created_at', 'content', 'name',
             'favorite_game', 'image', 'is_owner', 'review_count',
+            'saved_count',
         ]
