@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from django.db.models import Count
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework import generics, filters
 from .models import Profile
 from .serializers import ProfileSerializer
 from table_tt_api.permissions import IsOwnerOrReadOnly
@@ -17,7 +17,14 @@ class ProfileList(generics.ListAPIView):
         saved_count=Count('owner__save', distinct=True)
         
     ).order_by('-created_at')
+    filter_backends = [
+        filters.OrderingFilter
+    ]
     
+    ordering_fields = [
+        'review_count',
+        'saved_count',
+    ]
 
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):
@@ -28,6 +35,7 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.annotate(
         review_count=Count('owner__review', distinct=True),
+        saved_count=Count('owner__save', distinct=True)
         
     ).order_by('-created_at')
     
