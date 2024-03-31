@@ -6,7 +6,8 @@ from saved.models import Save
 class Game(models.Model):
     """
     Model for Games, related to user through owner and save model. 
-    Which enables the user to create a game and connect it to a saved review.
+    Which enables the user to create a game, to add to their wishlist
+    and connect it to a saved review.
     """
     genre_choices = [
     ('strategy', 'Strategy'), 
