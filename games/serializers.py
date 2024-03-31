@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Game
-from review.models import Review
+from reviews.models import Review
 
 class GameSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
