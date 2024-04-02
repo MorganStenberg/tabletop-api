@@ -23,7 +23,6 @@ class ProfileList(generics.ListAPIView):
     
     ordering_fields = [
         'review_count',
-        'saved_count',
     ]
 
 
