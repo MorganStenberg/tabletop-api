@@ -3,7 +3,8 @@ from .models import Review
 from likes.models import Like
 from saved.models import Save
 
-#Credit to Code Institute Walkthrough
+
+# Credit to Code Institute Walkthrough
 class ReviewSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
@@ -14,12 +15,11 @@ class ReviewSerializer(serializers.ModelSerializer):
     like_id = serializers.SerializerMethodField()
     save_id = serializers.SerializerMethodField()
 
-
     def validate_image(self, value):
         if value is None:
             return value
 
-        if value.size > 1024 * 1024 * 2: 
+        if value.size > 1024 * 1024 * 2:
             raise serializers.ValidationError(
                 'Image size larger than 2MB!'
             )

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-#Todo: add field for aggregating ratings from reviews
+
 class Review(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
@@ -17,9 +17,7 @@ class Review(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
-
-
-    class Meta: 
+    class Meta:
         ordering = ['-created_at']
 
     def __str__(self):

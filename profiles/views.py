@@ -6,6 +6,7 @@ from .models import Profile
 from .serializers import ProfileSerializer
 from table_tt_api.permissions import IsOwnerOrReadOnly
 
+
 class ProfileList(generics.ListAPIView):
     """
     Profile list view - credit to Code Institute Walkthrough, link in readme
@@ -15,12 +16,12 @@ class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.annotate(
         review_count=Count('owner__review', distinct=True),
         saved_count=Count('owner__save', distinct=True)
-        
+
     ).order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter
     ]
-    
+
     ordering_fields = [
         'review_count',
     ]
@@ -35,6 +36,5 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.annotate(
         review_count=Count('owner__review', distinct=True),
         saved_count=Count('owner__save', distinct=True)
-        
+
     ).order_by('-created_at')
-    

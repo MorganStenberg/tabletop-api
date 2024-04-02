@@ -5,24 +5,24 @@ from saved.models import Save
 
 class Game(models.Model):
     """
-    Model for Games, related to user through owner and save model. 
+    Model for Games, related to user through owner and save model.
     Which enables the user to create a game, to add to their wishlist
     and connect it to a saved review.
     """
     genre_choices = [
-    ('strategy', 'Strategy'), 
-    ('card_game', 'Card Game'), 
-    ('casual', 'Casual'), 
-    ('quiz', 'Quiz'), 
-    ('deck_building', 'Deck Building'),
-    ('cooperative', 'Cooperative'),
-    ('party', 'Party'),
-    ('puzzle', 'Puzzle'),
-    ('adventure', 'Adventure'),
-    ('role_playing', 'Role Playing'),
-    ('simulation', 'Simulation'),
-    ('trivia', 'Trivia'),
-    ('other', 'Other')
+        ('strategy', 'Strategy'),
+        ('card_game', 'Card Game'),
+        ('casual', 'Casual'),
+        ('quiz', 'Quiz'),
+        ('deck_building', 'Deck Building'),
+        ('cooperative', 'Cooperative'),
+        ('party', 'Party'),
+        ('puzzle', 'Puzzle'),
+        ('adventure', 'Adventure'),
+        ('role_playing', 'Role Playing'),
+        ('simulation', 'Simulation'),
+        ('trivia', 'Trivia'),
+        ('other', 'Other')
 
     ]
 
@@ -41,4 +41,5 @@ class Game(models.Model):
 
     def __str__(self):
         return self.title
+
 

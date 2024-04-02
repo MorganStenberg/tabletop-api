@@ -4,7 +4,6 @@ from rest_framework import generics, permissions
 from table_tt_api.permissions import IsOwnerOrReadOnly
 
 
-
 class SaveList(generics.ListCreateAPIView):
     """
     List and create save instances

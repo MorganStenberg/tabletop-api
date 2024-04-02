@@ -34,7 +34,7 @@ class ReviewList(generics.ListCreateAPIView):
         'title',
         'game',
     ]
-    
+
     ordering_fields = [
         'comments_count',
         'likes_count',

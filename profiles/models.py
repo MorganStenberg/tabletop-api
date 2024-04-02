@@ -14,11 +14,12 @@ class Profile(models.Model):
         upload_to='images/', default='../default_profile_yzvpjn'
     )
 
-    class Meta: 
+    class Meta:
         ordering = ['-created_at']
 
     def __str__(self):
         return f"{self.owner}'s profile"
+
 
 def create_profile(sender, instance, created, **kwargs):
     if created:

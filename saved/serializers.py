@@ -23,5 +23,6 @@ class SaveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Save
         fields = [
-            'id', 'owner', 'review', 'review_title', 'review_game', 'created_at',
+            'id', 'owner', 'review', 'review_title', 'review_game',
+            'created_at',
         ]

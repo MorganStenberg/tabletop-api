@@ -4,6 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Game
 from .serializers import GameSerializer
 
+
 class GameList(generics.ListCreateAPIView):
     """
     List a game or create a game
@@ -22,6 +23,7 @@ class GameList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
 
 class GameDetail(generics.RetrieveUpdateDestroyAPIView):
     """

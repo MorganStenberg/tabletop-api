@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from reviews.models import Review
 
 
-
 # Credit to Code Institute Walkthrough
 class Like(models.Model):
     """

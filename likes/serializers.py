@@ -14,7 +14,6 @@ class LikeSerializer(serializers.ModelSerializer):
         model = Like
         fields = ['id', 'owner', 'review']
 
-
     def create(self, validated_data):
         try:
             return super().create(validated_data)
