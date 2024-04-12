@@ -7,7 +7,7 @@ class GameSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
-    saved_review_connect = serializers.ReadOnlyField(read_only=True)
+    saved_review_connect = serializers.SerializerMethodField(read_only=True)
 
     def get_is_owner(self, obj):
         request = self.context['request']
