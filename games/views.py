@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions, filters
+from rest_framework.views import APIView
 from table_tt_api.permissions import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Game
@@ -33,7 +34,7 @@ class GameDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = GameSerializer
     queryset = Game.objects.all()
 
-class GenreChoices(APIview):
+class GenreChoices(APIView):
     """
     View to return list of genre choices for games
     """
