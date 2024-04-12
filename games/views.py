@@ -32,3 +32,13 @@ class GameDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = GameSerializer
     queryset = Game.objects.all()
+
+class GenreChoices(APIview):
+    """
+    View to return list of genre choices for games
+    """
+
+    permissions_classes = [permissions.AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        return Response(Game.genre_choices)
