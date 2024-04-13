@@ -8,6 +8,7 @@ class GameSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     saved_review_connect = serializers.SerializerMethodField(read_only=True)
+    genre_label = serializers.SerializerMethodField(read_only=True)
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -21,10 +22,14 @@ class GameSerializer(serializers.ModelSerializer):
                 "id": review.review.pk})
         return review_title
 
+
+    def get_genre_label(self, obj):
+        return dict(Game.genre_choices).get(obj.genre, "No genre available")
+
     class Meta:
         model = Game
         fields = [
             'id', 'owner', 'is_owner', 'genre', 'review_connect',
             'description', 'saved_review_connect', 'profile_id',
-            'title', 'created_at',
+            'title', 'created_at', 'genre_label',
         ]
