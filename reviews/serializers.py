@@ -62,3 +62,4 @@ class ReviewSerializer(serializers.ModelSerializer):
             'rating', 'game', 'profile_image', 'profile_id', 'title',
             'comments_count', 'likes_count', 'like_id', 'save_id',
         ]
+        extra_kwargs = {'image': {'required': False}}
