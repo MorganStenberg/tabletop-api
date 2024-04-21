@@ -26,10 +26,16 @@ The goal of this site is to create a place where people can share reviews and di
 - As an admin I can deploy my app so that it can be used by everyone
 
 ## Agile Development
+The application was built using an agile approach, using a Github Project Board and Issues. The Github project board can be found here. All user stories listed above were created with Github Issues. The user stories were used to keep track of progress throughout the project, via different columns specifying the status of the issue. With columns for 'Todo', 'In progress', 'Done' and 'DoD'. DoD, or Definition of Done was used for user stories that had been implemented and gone through testing. I also added a column for 'Backlog' for future features to be implemented, as a way to keep control of the scope of the project and be sure to deliver a MVP in time.
 
 ## Data Models and database
 
+The ERD diagram below lays out the structure for the data models. 
+
+![ERD diagram displaying the structure of the data models](documentation/data_model.PNG)
+
 ## Features
+
 
 ## Testing
 
