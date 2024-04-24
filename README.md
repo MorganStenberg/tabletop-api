@@ -1,10 +1,10 @@
-# ** TableTopTales API **
+# **TableTopTales API**
 
 TabletopTales is a social media site for board games enthusiasts, targeted towards people who love to play board games and want to share their reviews for others! As well as finding new games to add to their wishlist of games they want to play. 
 
 On TableTopTales users can write their own review of a game, create games to add to their whishlist, connect those games to an existing review, like and comment on other reviews. 
 
-The app is built in two parts with this making up the backend API and the front end is built with React.js, link to front end page here [ ]. 
+The app is built in two parts with this making up the backend API and the front end is built with React.js, [you can find the front end page here](https://tabletoptales-718dd24dcac5.herokuapp.com/). 
 
 [Link to deployed backend API here](https://ttt-api-0a140d9077e3.herokuapp.com/)
 
@@ -32,7 +32,23 @@ The application was built using an agile approach, using a Github Project Board 
 
 The ERD diagram below lays out the structure for the data models. 
 
+Django AllAuth was used for the user model and user authentication system.
+
+The profile model was created so the user can create and save reviews and create a wishlist of games that can be edited and deleted. 
+
+The game model contains all information on a game item that a user can create and add to a wishlist of games, such as creator of the game, title, description, review connection and a choice of genre. 
+
+The reiew model contains all information about a review, such as creator, title, content, image, rating and created at information.  
+
+The saved model enables the user to connect a wishlist game item to a review by saving the review. 
+
+The like model contains all information about a like, such as which user has made it and which review it has liked. 
+
+The comment model contains all information about a comment, such as which user has written it and on which review, the content of the comment and the creation date. 
+
 ![ERD diagram displaying the structure of the data models](documentation/data_model.PNG)
+
+
 
 ## Features
 The TableTopTales API contains six different apps, with each app endpoint being reached through adding the corresponding URL to the deployed API. 
@@ -41,10 +57,7 @@ Managing of the backend can be done by the superuser, by logging in via Django a
 
 ## Testing
 
-### Manual Testing
-
-### Validator Testing
-All the code has been run through Code Institue [CI Python Linter](https://pep8ci.herokuapp.com/). All code passed, except for some minor issues with whitespace and long lines. 
+See [TESTING](TESTING.md) for the full documentation of all testing done.
 
 ## Deployment
 The back-end API app was deployed to Heroku from GitHub with the following steps:
@@ -120,4 +133,15 @@ Go to your deployed front end app and copy the url for the app. Then go back to 
 
 ## Credits
 
-## Acknowledgements
+Code Institute walkthrough project ['Django Rest Framework'](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+DRF+2021_T1/courseware/f775d54df4da44d18309888b3fe884f7/bc5fbada70104d489aa0363a03d8bda8/), which is the back end project for the Code Institute walkthrough project ['Moments'](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+RA101+2021_T3/courseware/70a8c55db0504bbdb5bcc3bfcf580080/953cd4e5015f483bb05263db3e740e19/), has been used as a template and a starting point for this project. With added customization for my own project.
+
+Inspiration for this Readme have been taken from my own [League Hub](https://github.com/MorganStenberg/League-hub/tree/main) project, as well as [TravelTickr](https://github.com/SandraBergstrom/travel-tickr-api/tree/main).
+
+[BoardGameGeek](https://boardgamegeek.com/) has been used as a inspiration for board games and what to include in the review model. 
+
+**Other Credits**
+- [How to use annotate, Django Documenation](https://docs.djangoproject.com/en/3.2/ref/models/querysets/#django.db.models.query.QuerySet.annotate)
+- [Overriding create method and catching errors in serializers, Stackoverflow](https://docs.djangoproject.com/en/3.2/ref/models/querysets/#django.db.models.query.QuerySet.annotate)
+- [Set range for rating, Stackoverflow](https://stackoverflow.com/questions/33772947/django-set-range-for-integer-model-field-as-constraint)
+- [Custom method for serializer, Django Rest Framework documentation](https://www.django-rest-framework.org/api-guide/serializers)
+- [FilterBackend, Django Rest Framework documentation](https://www.django-rest-framework.org/api-guide/filtering/#djangofilterbackend)
