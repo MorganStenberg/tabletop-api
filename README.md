@@ -145,3 +145,4 @@ Inspiration for this Readme have been taken from my own [League Hub](https://git
 - [Set range for rating, Stackoverflow](https://stackoverflow.com/questions/33772947/django-set-range-for-integer-model-field-as-constraint)
 - [Custom method for serializer, Django Rest Framework documentation](https://www.django-rest-framework.org/api-guide/serializers)
 - [FilterBackend, Django Rest Framework documentation](https://www.django-rest-framework.org/api-guide/filtering/#djangofilterbackend)
+- [Imagefield optional, Stackoverflow](https://stackoverflow.com/questions/37679210/django-rest-framework-imagefield-optional)
