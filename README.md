@@ -2,9 +2,9 @@
 
 TabletopTales is a social media site for board games enthusiasts, targeted towards people who love to play board games and want to share their reviews for others! As well as finding new games to add to their wishlist of games they want to play. 
 
-On TableTopTales users can write their own review of a game, create games to add to their whishlist, connect those games to an existing review, like and comment on other reviews. 
+On TableTopTales users can write their own review of a game, create games to add to their wishlist, connect those games to an existing review, like and comment on other reviews. 
 
-The app is built in two parts with this making up the backend API and the front end is built with React.js, [you can find the front end page here](https://tabletoptales-718dd24dcac5.herokuapp.com/). 
+The app is built in two parts with this making up the backend API and the front end is built with React.js, [you can find the front end page here](https://tabletoptales-718dd24dcac5.herokuapp.com/) and the [front end repo here](https://github.com/MorganStenberg/tabletoptales)
 
 [Link to deployed backend API here](https://ttt-api-0a140d9077e3.herokuapp.com/)
 
@@ -38,7 +38,7 @@ The profile model was created so the user can create and save reviews and create
 
 The game model contains all information on a game item that a user can create and add to a wishlist of games, such as creator of the game, title, description, review connection and a choice of genre. 
 
-The reiew model contains all information about a review, such as creator, title, content, image, rating and created at information.  
+The review model contains all information about a review, such as creator, title, content, image, rating and created at information.  
 
 The saved model enables the user to connect a wishlist game item to a review by saving the review. 
 
@@ -68,12 +68,12 @@ The back-end API app was deployed to Heroku from GitHub with the following steps
 
 - Attach the external database. 
 	- In the Heroku app that you created, you need to create environment variables, called Config Var at Heroku. 
-	- Go back to your ElephantSQL account, and from the dashboard click on the database instance name for the project. When in the project instance, copy the ElephantSQL database url by clicking on the copy icon. In the Config Vars section in at Heroku, add this url to the VALUE field and add DATABASE_URL to the KEY field. 
+	- Go back to your ElephantSQL account, and from the dashboard click on the database instance name for the project. When in the project instance, copy the ElephantSQL database url by clicking on the copy icon. In the Config Vars section at Heroku, add this url to the VALUE field and add DATABASE_URL to the KEY field. 
 	- In your workspace, create a file called env.py in the top level directory. Add env.py to the list of files in your gitignore file. In the env.py file, import the os library and add the ElephantSQL DATABASE_URL. Below that, also add `os.environ['DEV'] = '1'`. You also need to choose and add a SECRET_KEY value like this: `os.environ.setdefault('SECRET_KEY', 'your-secret-key')`. The key also needs to be added as a config var at Heroku. Add SECRET_KEY in the KEY field and the secret key in the VALUE field. 
 
 - Set up Cloudinary by installing it and the Pillow library. When logged in to your account on Cloudinary, copy your url on the Cloudinary dashboard and paste it into the env.py file, as with the SECRET_KEY and DATABASE_URL. Then go to Heroku and add the url to the config vars. Add CLOUDINARY_URL in the KEY field and your url in the VALUE field. Then also add static files settings in settings.py to tell Django to use Cloudinary.
 
-- Connect to external database, create superuser for the database and make the migrations. Confirm connection to database by going to ElephantSQL and the page for your database.
+- Connect to an external database, create a superuser for the database and make the migrations. Confirm connection to database by going to ElephantSQL and the page for your database.
 
 - Install gunicorn, which is needed for the project to run on Heroku. Then you need to create a requirements.txt file: pip3 freeze --local > requirements.txt
 
@@ -81,17 +81,17 @@ The back-end API app was deployed to Heroku from GitHub with the following steps
     release: python manage.py makemigrations && python manage.py migrate
     web: gunicorn table_tt_api.wsgi
 
-- Add Corsheader to installed apps in settings.py, add Heroku to allowed hosts. Also set allowed_origins for networks requests and enable sending cookies in cross-origin requests under middleware in settings.py. 
+- Add Corsheader to installed apps in settings.py, add Heroku to allowed hosts. Also set allowed_origins for network requests and enable sending cookies in cross-origin requests under middleware in settings.py. 
 
 - Change debug value from True to 'DEV' in os.environ, which means that DEBUG will be True if the DEV environment variable exists but False if it is not, meaning in production.
 
-- Add JWT tokens functionality. Install the djangorestframework-simplejwt package, Add JWT_AUTH attributes. This will allow front end app and the API deployed to different platforms and the cookies will not be blocked.
+- Add JWT tokens functionality. Install the djangorestframework-simplejwt package, Add JWT_AUTH attributes. This will allow the front end app and the API deployed to different platforms and the cookies will not be blocked.
 
 - Set the JSON Renderer by adding: 'if 'DEV' not in os.environ: REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = ['rest_framework.renderers.JSONRenderer',]'
 
-- Update requirements.txt file and deploy on Herukou through connecting to the repository on Github. 
+- Update requirements.txt file and deploy on Heroku through connecting to the repository on Github. 
 
-- Fix dj-rest-auth bug according to instructions in walkthrough. The bug won´t allow users to log out. The issue is connected to the samesite attribute. 
+- Fix dj-rest-auth bug according to instructions in walkthrough. The bug wont allow users to log out. The issue is connected to the samesite attribute. 
 
 To fix it create a views.py file in the app folder and import JWT_AUTH. Then, write a new logout view that sets both jwt tokens to empty strings and also pass samesite=JWT_AUTH_SAMESITE. Include the logout view in urls.py by importing it and add it to the urlpatterns list above the default dj-rest-auth urls. Then push the code to GitHub, and if you have chosen to manually deploy your app at Heroku make sure you deploy it again. In order to use the API with the front end app, add two new environment variables. Go to your allowed hosts in settings.py and copy the string/link for your Heroku app. Go to your app at Heroku, and then the settings tab. Add a config var with the key value of ALLOWED_HOST and paste in the string you copied from settings.py. Go back to settings.py and replace the heroku link with os.environ.get('ALLOWED_HOST'). In your settings.py file add: import re. Then, in the `if 'CLIENT_ORIGIN' in os.environ:...` code, replace the else statement and body with the following code:
 
@@ -137,7 +137,7 @@ Code Institute walkthrough project ['Django Rest Framework'](https://learn.codei
 
 Inspiration for this Readme have been taken from my own [League Hub](https://github.com/MorganStenberg/League-hub/tree/main) project, as well as [TravelTickr](https://github.com/SandraBergstrom/travel-tickr-api/tree/main).
 
-[BoardGameGeek](https://boardgamegeek.com/) has been used as a inspiration for board games and what to include in the review model. 
+[BoardGameGeek](https://boardgamegeek.com/) has been used as an inspiration for board games and what to include in the review model. 
 
 **Other Credits**
 - [How to use annotate, Django Documenation](https://docs.djangoproject.com/en/3.2/ref/models/querysets/#django.db.models.query.QuerySet.annotate)
