@@ -4,7 +4,7 @@ The testing documentation provides an overview of all testing conducted on Table
 
 ### Validation
 
-All the code has been run through Code Institue [CI Python Linter](https://pep8ci.herokuapp.com/). All code passed, except for some minor issues with whitespace and long lines. 
+All the code has been run through Code Institute [CI Python Linter](https://pep8ci.herokuapp.com/). All code passed, except for some minor issues with whitespace and long lines. 
 
 ### Manual testing
 
